@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="">
+    <main className="bg-stone-50 text-stone-600 min-h-screen selection:bg-amber-100">
       <Navbar />
       <Hero />
       <About />
@@ -19,6 +19,6 @@ export default function Home() {
       <Experience />
       <Contact />
       <Footer />
-    </div>
+    </main>
   );
 }
