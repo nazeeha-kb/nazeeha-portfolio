@@ -119,6 +119,8 @@ const Projects = () => {
   const containerRef = useRef(null);
   const isAdjusting = useRef(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isManualScrolling, setIsManualScrolling] = useState(false);
+  const [isTouching, setIsTouching] = useState(false);
   const tripleProjects = [...projects, ...projects, ...projects];
 
   useEffect(() => {
@@ -150,7 +152,7 @@ const Projects = () => {
   }, [isHovered]);
 
   const onScroll = () => {
-    if (!containerRef.current || isAdjusting.current) return;
+    if (!containerRef.current || isAdjusting.current || isManualScrolling || isTouching) return;
 
     const container = containerRef.current;
     const { scrollLeft, scrollWidth } = container;
@@ -196,17 +198,31 @@ const Projects = () => {
   };
 
   const scrollLeft = () => {
-    containerRef.current?.scrollBy({
+    if (!containerRef.current) return;
+    setIsManualScrolling(true);
+    containerRef.current.classList.add("snap-none");
+    containerRef.current.scrollBy({
       left: -scrollByAmount(),
       behavior: "smooth",
     });
+    setTimeout(() => {
+      containerRef.current?.classList.remove("snap-none");
+      setIsManualScrolling(false);
+    }, 500);
   };
 
   const scrollRight = () => {
-    containerRef.current?.scrollBy({
+    if (!containerRef.current) return;
+    setIsManualScrolling(true);
+    containerRef.current.classList.add("snap-none");
+    containerRef.current.scrollBy({
       left: scrollByAmount(),
       behavior: "smooth",
     });
+    setTimeout(() => {
+      containerRef.current?.classList.remove("snap-none");
+      setIsManualScrolling(false);
+    }, 500);
   };
 
   return (
@@ -218,7 +234,7 @@ const Projects = () => {
     >
       <style>{`
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; touch-action: pan-x; }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-6 space-y-16">
@@ -236,7 +252,7 @@ const Projects = () => {
 
         <div className="relative group/carousel px-0 md:px-12">
           {/* Side Arrows */}
-          <div className="absolute top-1/2 left-0 z-20 -translate-y-1/2 hidden md:block opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+          <div className="absolute top-1/2 left-0 z-20 -translate-y-1/2">
             <button
               onClick={scrollLeft}
               className="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-900 hover:border-stone-400 transition-all shadow-xl active:scale-95 translate-x-1/2"
@@ -245,7 +261,7 @@ const Projects = () => {
             </button>
           </div>
 
-          <div className="absolute top-1/2 right-0 z-20 -translate-y-1/2 hidden md:block opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+          <div className="absolute top-1/2 right-0 z-20 -translate-y-1/2">
             <button
               onClick={scrollRight}
               className="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-900 hover:border-stone-400 transition-all shadow-xl active:scale-95 -translate-x-1/2"
@@ -257,6 +273,14 @@ const Projects = () => {
           <div
             ref={containerRef}
             onScroll={onScroll}
+            onTouchStart={() => {
+              setIsTouching(true);
+              containerRef.current?.classList.add("snap-none");
+            }}
+            onTouchEnd={() => {
+              setIsTouching(false);
+              containerRef.current?.classList.remove("snap-none");
+            }}
             className="flex gap-5 sm:gap-8 overflow-x-auto no-scrollbar pb-10 pt-4 snap-x snap-mandatory px-2 sm:px-0"
           >
             {tripleProjects.map((project, index) => (
