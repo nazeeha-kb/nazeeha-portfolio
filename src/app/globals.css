@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -20,15 +15,33 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer utilities {
-  .navbar {
+@layer base {
+  html {
     scroll-behavior: smooth;
   }
+}
+
+@layer utilities {
+
+  .snap-center {
+    scroll-snap-align: center;
+  }
+
+  /* Button */
+  .btn {
+    @apply cursor-pointer px-6 py-2.5 transition rounded-md;
+  }
+
+  .carousel-container {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
 
   /* underline indicator */
 
@@ -46,14 +59,15 @@ body {
   .underline-indicator>*:focus::after {
     @apply scale-100;
   }
+  
+  .underline-indicator>*.active::after,
+  .underline-indicator>*.active::after {
+    @apply scale-100;
+  }
 
   .underline-indicator>*:hover,
   .underline-indicator>*:focus {
     @apply text-stone-600;
   }
 
-  /* Button */
-  .btn {
-    @apply cursor-pointer px-6 py-2.5 transition rounded-md;
-  }
 }
