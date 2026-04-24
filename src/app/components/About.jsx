@@ -2,6 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Download, MapPin, Code2 } from "lucide-react";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const About = () => {
   return (
@@ -57,21 +59,24 @@ const About = () => {
             </div>
 
             <div className="flex gap-8 pt-2">
-              <motion.button
+              <motion.a
+                href="#contact"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="btn bg-stone-900 text-stone-50 hover:bg-stone-800"
               >
                 Get in Touch
-              </motion.button>
+              </motion.a>
 
-              <motion.button
+              <motion.a
+                href="/Nazeeha_Bhoira_Resume.pdf"
+                download
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="btn border border-stone-300 text-stone-900 hover:bg-stone-200"
               >
-                Download CV
-              </motion.button>
+                <FontAwesomeIcon icon={faDownload} /> Download CV
+              </motion.a>
             </div>
           </motion.div>
 

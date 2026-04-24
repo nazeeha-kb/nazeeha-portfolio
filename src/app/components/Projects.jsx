@@ -11,7 +11,6 @@ const projects = [
     title: "Space Toursim Website",
 
     image: "/space-tourism.png",
-    year: "2026",
     tags: ["React.js", "TailwindCSS"],
     description:
       "A fully dynamic WordPress website with custom theme, ACF integration, and SEO optimization.",
@@ -23,7 +22,6 @@ const projects = [
     title: "Bookmark Landing Page",
 
     image: "/bookmark-landing.png",
-    year: "2026",
     tags: ["TailwindCSS", "Semantic HTML", "Mobile-first"],
     description:
       "Premium travel planning interface featuring immersive aesthetics and seamless booking logic.",
@@ -35,7 +33,6 @@ const projects = [
     title: "Flavor Fusion",
 
     image: "/flavor-fusion.png",
-    year: "2025",
     tags: ["Next.js", "MongoDB", "TailwindCSS", "GSAP"],
     description:
       "AI-powered Recipe generator with authentication. Generates recipes for ingredients entered.",
@@ -47,7 +44,6 @@ const projects = [
     title: "PullBoard",
 
     image: "/pullboard.png",
-    year: "2025",
     tags: ["React", "TaiwlindCSS", "Axios", "Vite"],
     description:
       "AI-powered Recipe generator with authentication. Generates recipes for ingredients entered.",
@@ -68,15 +64,25 @@ const ProjectCard = ({ project }) => (
       <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
     </div>
 
-    <div className="p-5 sm:p-8 md:p-10 flex flex-col gap-6 md:gap-4">
+    {/* Content */}
+    <div className="py-5 sm:py-8 md:py-10 px-6 flex flex-col gap-6 md:gap-4">
       {/* TITLE */}
       <div className="flex justify-between items-start gap-4">
         <h3 className="text-xl sm:text-2xl font-semibold text-stone-900 tracking-tight leading-tight">
           {project.title}
         </h3>
-        <span className="text-[10px] sm:text-xs font-mono text-stone-400 font-bold mt-1">
-          {project.year}
-        </span>
+        <motion.a
+          title="Github Repo"
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05, rotate: 4 }}
+          whileTap={{ scale: 0.95 }}
+          className="h-11 aspect-square border border-stone-200 rounded-full flex items-center justify-center text-stone600 hover:text-stone-900 hover:border-stone-400 transition-all"
+        >
+          {/* GitHub icon optional */}
+          <FontAwesomeIcon icon={faGithub} />{" "}
+        </motion.a>
       </div>
 
       {/* TAGS */}
@@ -104,18 +110,6 @@ const ProjectCard = ({ project }) => (
           <ExternalLink size={16} />
           Live Demo
         </motion.button>
-
-        <motion.a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05, rotate: 4 }}
-          whileTap={{ scale: 0.95 }}
-          className="h-11 aspect-square border border-stone-300 rounded-lg flex items-center justify-center text-stone600 hover:text-stone-900 hover:border-stone-400 transition-all"
-        >
-          {/* GitHub icon optional */}
-          <FontAwesomeIcon icon={faGithub} />{" "}
-        </motion.a>
       </div>
     </div>
   </motion.div>

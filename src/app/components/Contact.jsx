@@ -3,6 +3,32 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageSquare, Clock, Send, Globe } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faCode } from "@fortawesome/free-solid-svg-icons";
+import { title } from "framer-motion/client";
+
+const socials = [
+  {
+    id: 1,
+    platform: "Linkedin",
+    url: "https://www.linkedin.com/in/nazeeha-kb",
+    icon: faLinkedin,
+  },
+  {
+    id: 2,
+    platform: "GitHub",
+    url: "https://github.com/nazeeha-kb",
+    icon: faGithub,
+  },
+  {
+    id: 3,
+    platform: "Frontend Mentor",
+    url: "https://www.frontendmentor.io/profile/nazeeha-kb",
+    icon: faCode,
+    title:"frontend mentor"
+  },
+];
 
 const ContactInfoItem = ({ icon: Icon, title, value, subValue }) => (
   <div className="flex items-start gap-5 group">
@@ -89,16 +115,17 @@ const Contact = () => {
             {/* SOCIAL LINKS ACCENT */}
             <div className="pt-8 border-t border-stone-100 flex items-center gap-6">
               <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-stone-400">
-                Social Discovery
+                Socials
               </span>
-              <div className="flex gap-4">
-                {["LinkedIn", "Github", "Twitter"].map((social) => (
+              <div className="flex gap-4 text-xl">
+                {socials.map((social) => (
                   <a
-                    key={social}
-                    href="#"
-                    className="text-xs font-bold text-stone-400 hover:text-amber-600 transition-colors uppercase tracking-tight"
+                    title={social.title}
+                    key={social.id}
+                    href={social.url}
+                    className="font-bold text-stone-400 hover:text-amber-600 transition-colors uppercase tracking-tight"
                   >
-                    {social}
+                    <FontAwesomeIcon icon={social.icon} />{" "}
                   </a>
                 ))}
               </div>
