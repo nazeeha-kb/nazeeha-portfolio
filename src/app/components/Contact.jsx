@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageSquare, Clock, Send, Globe } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
-import { title } from "framer-motion/client";
 
 const socials = [
   {
@@ -14,19 +13,21 @@ const socials = [
     platform: "Linkedin",
     url: "https://www.linkedin.com/in/nazeeha-kb",
     icon: faLinkedin,
+    title: "linkedin",
   },
   {
     id: 2,
     platform: "GitHub",
     url: "https://github.com/nazeeha-kb",
     icon: faGithub,
+    title: "github",
   },
   {
     id: 3,
     platform: "Frontend Mentor",
     url: "https://www.frontendmentor.io/profile/nazeeha-kb",
     icon: faCode,
-    title:"frontend mentor"
+    title: "frontend mentor",
   },
 ];
 
@@ -45,6 +46,48 @@ const ContactInfoItem = ({ icon: Icon, title, value, subValue }) => (
 );
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const form = e.target;
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
+
+    try {
+      const res = await fetch("https://formspree.io/f/myklowkp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setSuccess(true);
+        form.reset();
+
+        setTimeout(() => setSuccess(false), 3000);
+      } else {
+        setError("Something went wrong. Try again.");
+      }
+    } catch (err) {
+      setError("Network error. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -76,9 +119,9 @@ const Contact = () => {
                 Contact Information
               </h4>
               <p className="text-stone-500 leading-relaxed max-w-md">
-                I'm always interested in new opportunities, collaborations, or
-                just a chat about technology. Feel free to reach out via the
-                form or my social channels.
+                I’m open to new opportunities, collaborations, or simply a
+                conversation about technology. Feel free to reach out through
+                the form or my social links.
               </p>
             </div>
 
@@ -108,7 +151,7 @@ const Contact = () => {
               <ContactInfoItem
                 icon={Clock}
                 title="Availability"
-                value="Usually within 24 hours"
+                value="Within 24 hours"
               />
             </div>
 
@@ -139,7 +182,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="bg-stone-50/50 border border-stone-200 rounded-[3rem] p-8 md:p-12 shadow-[0_32px_64px_-16px_rgba(28,25,23,0.05)]"
           >
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div className="space-y-2">
                 <h4 className="text-2xl font-display font-medium text-stone-900 tracking-tight">
                   Send a message
@@ -155,6 +198,7 @@ const Contact = () => {
                     Your Name
                   </label>
                   <input
+                    name="name"
                     type="text"
                     id="name"
                     placeholder="Enter your name"
@@ -169,6 +213,7 @@ const Contact = () => {
                     Email Address
                   </label>
                   <input
+                    name="email"
                     type="email"
                     id="email"
                     placeholder="name@company.com"
@@ -185,6 +230,7 @@ const Contact = () => {
                   Message Details
                 </label>
                 <textarea
+                  name="message"
                   id="message"
                   rows={6}
                   placeholder="I'd like to talk about..."
@@ -193,6 +239,7 @@ const Contact = () => {
               </div>
 
               <motion.button
+                type="submit"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-5 bg-stone-900 text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-3 shadow-2xl shadow-stone-900/10 hover:bg-stone-800 transition-all"
@@ -204,6 +251,18 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
+
+      {success && (
+        <div className="fixed bottom-14 z-10 right-6 bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-lg text-sm">
+          Form Submitted Successfully!
+        </div>
+      )}
+
+      {error && (
+        <div className="fixed bottom-14 z-10 right-6 bg-red-500 text-white px-6 py-3 rounded-2xl shadow-lg text-sm">
+          {error}
+        </div>
+      )}
 
       {/* BACKGROUND ACCENTS */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-50 blur-[120px] rounded-full translate-x-1/4 -translate-y-1/4 pointer-events-none" />
