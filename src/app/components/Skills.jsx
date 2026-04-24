@@ -7,7 +7,7 @@ import { div } from "framer-motion/client";
 
 const SkillItem = ({ icon, name }) => (
   <div className="flex items-center gap-3 p-3 group transition-colors">
-    <div className="p-2 rounded-lg bg-stone-50 group-hover:bg-white group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
+    <div className="p-2 rounded-lg bg-stone-50 dark:bg-stone-800 group-hover:bg-white dark:group-hover:bg-stone-700 group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
       <img
         src={icon}
         alt={name}
@@ -15,7 +15,7 @@ const SkillItem = ({ icon, name }) => (
         referrerPolicy="no-referrer"
       />
     </div>
-    <span className="text-sm font-medium text-stone-600 group-hover:text-stone-900 transition-colors">
+    <span className="text-sm font-medium text-stone-600 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-stone-100 transition-colors">
       {name}
     </span>
   </div>
@@ -96,18 +96,18 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-32 bg-stone-50 px-6">
+    <section id="skills" className="py-32 bg-stone-50 dark:bg-stone-900 px-6">
       <div className="max-w-6xl mx-auto space-y-20">
         {/* Header */}
         <div className="text-center md:text-left space-y-4">
-          <div className="flex items-center gap-2 text-stone-400 font-mono text-[10px] uppercase font-bold tracking-[0.4em]">
-            <div className="w-8 h-[1px] bg-stone-200" />
+          <div className="flex items-center gap-2 text-stone-400 dark:text-stone-500 font-mono text-[10px] uppercase font-bold tracking-[0.4em]">
+            <div className="w-8 h-[1px] bg-stone-200 dark:bg-stone-700" />
             <span>The Toolbox</span>
           </div>
 
-          <h3 className="text-4xl md:text-5xl font-medium text-stone-900 tracking-tight">
+          <h3 className="text-4xl md:text-5xl font-medium text-stone-900 dark:text-stone-100 tracking-tight">
             Capabilities &{" "}
-            <span className="text-stone-400 italic">Infrastructure</span>.
+            <span className="text-stone-400 dark:text-stone-500 italic">Infrastructure</span>.
           </h3>
         </div>
 
@@ -118,14 +118,14 @@ const Skills = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white border border-stone-200 lg:p-10 p-8 rounded-[2.5rem] space-y-4 shadow-sm"
+            className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 lg:p-10 p-8 rounded-[2.5rem] space-y-4 shadow-sm"
           >
             <div className="space-y-4 flex gap-5">
               <div className="flex justify-between items-start">
-                <Cpu className="text-stone-500" size={24} />
+                <Cpu className="text-stone-500 dark:text-stone-400" size={24} />
               </div>
 
-              <h4 className="text-xl font-semibold text-stone-900">
+              <h4 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
                 Languages
               </h4>
             </div>
@@ -147,14 +147,14 @@ const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="bg-white border border-stone-200 lg:p-10 p-8 rounded-[2.5rem] space-y-4 shadow-sm"
+            className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 lg:p-10 p-8 rounded-[2.5rem] space-y-4 shadow-sm"
           >
             <div className="space-y-4 flex gap-5">
               <div className="flex justify-between items-start">
-                <Atom className="text-stone-500" size={24} />
+                <Atom className="text-stone-500 dark:text-stone-400" size={24} />
               </div>
 
-              <h4 className="text-xl font-semibold text-stone-900">
+              <h4 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
                 Technologies
               </h4>
             </div>
@@ -176,15 +176,15 @@ const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-white border border-stone-200 lg:p-10 p-8 rounded-[2.5rem] space-y-4 shadow-sm"
+            className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 lg:p-10 p-8 rounded-[2.5rem] space-y-4 shadow-sm"
           >
             <div className="space-y-3">
               <div className="space-y-4 flex gap-5">
                 <div className="flex justify-between items-start">
-                  <Box className="text-stone-500" size={24} />
+                  <Box className="text-stone-500 dark:text-stone-400" size={24} />
                 </div>
 
-                <h4 className="text-xl font-semibold text-stone-900">Tools</h4>
+                <h4 className="text-xl font-semibold text-stone-900 dark:text-stone-100">Tools</h4>
               </div>
             </div>
 

@@ -1,3 +1,4 @@
+@config "../../tailwind.config.js";
 @import "tailwindcss";
 
 @theme inline {
@@ -59,7 +60,7 @@ body {
   .underline-indicator>*:focus::after {
     @apply scale-100;
   }
-  
+
   .underline-indicator>*.active::after,
   .underline-indicator>*.active::after {
     @apply scale-100;

@@ -51,66 +51,57 @@ const projects = [
     githubUrl: "https://github.com/chingu-voyages/V57-tier3-team-33",
   },
 ];
-
 const ProjectCard = ({ project }) => (
-  <motion.div className="min-w-[85vw] sm:min-w-120 bg-white border border-stone-200 rounded-2xl sm:rounded-xl overflow-hidden flex flex-col shadow-[0_20px_60px_-20px_rgba(28,25,23,0.08)]">
-    {/* IMAGE */}
-    <div className="relative aspect-16/10 sm:aspect-video overflow-hidden bg-stone-100 group">
+  <motion.div className="w-[280px] sm:w-[380px] bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl overflow-hidden flex flex-col shadow-[0_10px_30px_-15px_rgba(28,25,23,0.08)] h-full group/card">
+    <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 dark:bg-stone-800">
       <img
         src={project.image}
         alt={project.title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-105"
       />
-      <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
+      <div className="absolute inset-0 bg-stone-900/0 group-hover/card:bg-stone-900/5 dark:group-hover/card:bg-stone-900/10 transition-colors duration-500" />
     </div>
 
-    {/* Content */}
-    <div className="py-5 sm:py-8 md:py-10 px-6 flex flex-col gap-6 md:gap-4">
-      {/* TITLE */}
+    <div className="p-6 sm:p-8 flex flex-col flex-grow gap-5 sm:gap-6">
       <div className="flex justify-between items-start gap-4">
-        <h3 className="text-xl sm:text-2xl font-semibold text-stone-900 tracking-tight leading-tight">
+        <h3 className="text-xl sm:text-2xl font-semibold text-stone-900 dark:text-stone-100 tracking-tight leading-tight">
           {project.title}
         </h3>
+
         <motion.a
-          title="Github Repo"
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.05, rotate: 4 }}
-          whileTap={{ scale: 0.95 }}
-          className="h-11 aspect-square border border-stone-200 rounded-full flex items-center justify-center text-stone600 hover:text-stone-900 hover:border-stone-400 transition-all"
+          className="h-10 sm:h-11 aspect-square border border-stone-200 dark:border-stone-700 rounded-full flex items-center justify-center text-stone-400 dark:text-stone-500 bg-white dark:bg-stone-800"
         >
-          {/* GitHub icon optional */}
-          <FontAwesomeIcon icon={faGithub} />{" "}
+          <FontAwesomeIcon icon={faGithub} />
         </motion.a>
       </div>
 
-      {/* TAGS */}
-      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+      <div className="flex flex-wrap gap-2">
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="px-3 sm:px-4 py-1 sm:py-1.5 bg-stone-50 border border-stone-200 text-stone-600 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-tight"
+            className="px-3 py-1 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 rounded-full text-[10px] font-bold uppercase"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      {/* DESCRIPTION */}
-      <p className="text-stone-500 leading-relaxed">{project.description}</p>
+      <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed line-clamp-2">
+        {project.description}
+      </p>
 
-      {/* BUTTONS */}
-      <div className="flex gap-3 sm:gap-4 items-center pt-1">
-        <motion.button
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex-1 bg-stone-900 text-white py-3 rounded-lg flex items-center justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold hover:bg-stone-800 transition-colors"
-        >
-          <ExternalLink size={16} />
-          Live Demo
-        </motion.button>
-      </div>
+      <motion.a
+        href={project.demoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-auto w-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 py-3 rounded-xl flex items-center justify-center gap-3 text-xs font-bold"
+      >
+        <ExternalLink size={16} className="text-amber-500" />
+        Live Demo
+      </motion.a>
     </div>
   </motion.div>
 );
@@ -121,170 +112,119 @@ const Projects = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isManualScrolling, setIsManualScrolling] = useState(false);
   const [isTouching, setIsTouching] = useState(false);
+
   const tripleProjects = [...projects, ...projects, ...projects];
 
   useEffect(() => {
     if (containerRef.current) {
-      const { scrollWidth } = containerRef.current;
-      // Start at the beginning of the middle set
+      const scrollWidth = containerRef.current.scrollWidth;
       containerRef.current.scrollLeft = scrollWidth / 3;
     }
   }, []);
 
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || isTouching || isManualScrolling) return;
 
-    let raf;
-    const speed = 0.3; // tweak this (lower = slower smoother)
+    let rafId;
+    const speed = 0.5;
 
     const autoScroll = () => {
-      if (containerRef.current) {
-        if (!isAdjusting.current) {
-          containerRef.current.scrollLeft += speed;
-        }
+      if (containerRef.current && !isAdjusting.current) {
+        containerRef.current.scrollLeft += speed;
       }
-      raf = requestAnimationFrame(autoScroll);
+      rafId = requestAnimationFrame(autoScroll);
     };
 
-    raf = requestAnimationFrame(autoScroll);
+    rafId = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(rafId);
+  }, [isHovered, isTouching, isManualScrolling]);
 
-    return () => cancelAnimationFrame(raf);
-  }, [isHovered]);
-
-  const onScroll = () => {
-    if (!containerRef.current || isAdjusting.current || isManualScrolling || isTouching) return;
+  const handleScroll = () => {
+    if (!containerRef.current || isAdjusting.current) return;
 
     const container = containerRef.current;
-    const { scrollLeft, scrollWidth } = container;
-
+    const scrollLeft = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
     const oneSetWidth = scrollWidth / 3;
-    const buffer = 100;
+
+    const buffer = 10;
 
     if (scrollLeft <= buffer) {
       isAdjusting.current = true;
-
-      // disable snap BEFORE jump
-      container.classList.add("snap-none");
-
-      requestAnimationFrame(() => {
-        container.scrollLeft = scrollLeft + oneSetWidth;
-
-        // re-enable snap AFTER jump
-        requestAnimationFrame(() => {
-          container.classList.remove("snap-none");
-          isAdjusting.current = false;
-        });
-      });
-    }
-
-    if (scrollLeft >= oneSetWidth * 2 - buffer) {
+      container.scrollLeft = scrollLeft + oneSetWidth;
+      setTimeout(() => (isAdjusting.current = false), 10);
+    } else if (scrollLeft >= oneSetWidth * 2 - buffer) {
       isAdjusting.current = true;
-
-      container.classList.add("snap-none");
-
-      requestAnimationFrame(() => {
-        container.scrollLeft = scrollLeft - oneSetWidth;
-
-        requestAnimationFrame(() => {
-          container.classList.remove("snap-none");
-          isAdjusting.current = false;
-        });
-      });
+      container.scrollLeft = scrollLeft - oneSetWidth;
+      setTimeout(() => (isAdjusting.current = false), 10);
     }
   };
-  const scrollByAmount = () => {
-    const card = containerRef.current?.querySelector(".snap-center");
-    return card ? card.clientWidth + 32 : 552;
-  };
 
-  const scrollLeft = () => {
+  const scrollLeftBtn = () => {
     if (!containerRef.current) return;
     setIsManualScrolling(true);
-    containerRef.current.classList.add("snap-none");
     containerRef.current.scrollBy({
-      left: -scrollByAmount(),
+      left: -300,
       behavior: "smooth",
     });
-    setTimeout(() => {
-      containerRef.current?.classList.remove("snap-none");
-      setIsManualScrolling(false);
-    }, 500);
+    setTimeout(() => setIsManualScrolling(false), 800);
   };
 
-  const scrollRight = () => {
+  const scrollRightBtn = () => {
     if (!containerRef.current) return;
     setIsManualScrolling(true);
-    containerRef.current.classList.add("snap-none");
     containerRef.current.scrollBy({
-      left: scrollByAmount(),
+      left: 300,
       behavior: "smooth",
     });
-    setTimeout(() => {
-      containerRef.current?.classList.remove("snap-none");
-      setIsManualScrolling(false);
-    }, 500);
+    setTimeout(() => setIsManualScrolling(false), 800);
   };
 
   return (
     <section
       id="projects"
-      className="py-32 bg-white overflow-hidden"
+      className="py-32 bg-white dark:bg-stone-900 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <style>{`
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; touch-action: pan-x; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
+      {/* Header */}
       <div className="max-w-7xl mx-auto px-6 space-y-16">
         <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-2 text-stone-400 font-mono text-[10px] uppercase font-bold tracking-[0.4em]">
-            <div className="w-8 h-[1px] bg-stone-200" />
+          <div className="flex items-center justify-center gap-2 text-stone-400 dark:text-stone-500 font-mono text-[10px] uppercase font-bold tracking-[0.4em]">
+            <div className="w-8 h-[1px] bg-stone-200 dark:bg-stone-700" />
             <span>Selected Projects</span>
-            <div className="w-8 h-[1px] bg-stone-200" />
+            <div className="w-8 h-[1px] bg-stone-200 dark:bg-stone-700" />
           </div>
-          <h3 className="text-4xl md:text-5xl font-display font-medium text-stone-900 tracking-tight">
-            Crafting <span className="text-stone-400 italic">Digital</span>{" "}
+          <h3 className="text-4xl md:text-5xl font-display font-medium text-stone-900 dark:text-stone-100 tracking-tight">
+            Crafting <span className="text-stone-400 dark:text-stone-500 italic">Digital</span>{" "}
             Excellence.
           </h3>
         </div>
 
-        <div className="relative group/carousel px-0 md:px-12">
-          {/* Side Arrows */}
-          <div className="absolute top-1/2 left-0 z-20 -translate-y-1/2">
-            <button
-              onClick={scrollLeft}
-              className="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-900 hover:border-stone-400 transition-all shadow-xl active:scale-95 translate-x-1/2"
-            >
-              <ChevronLeft size={24} />
-            </button>
-          </div>
+        {/* Carousel */}
+        <div className="relative">
+          <button onClick={scrollLeftBtn} className="absolute left-4 top-1/2">
+            <ChevronLeft />
+          </button>
 
-          <div className="absolute top-1/2 right-0 z-20 -translate-y-1/2">
-            <button
-              onClick={scrollRight}
-              className="w-16 h-16 bg-white border border-stone-200 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-900 hover:border-stone-400 transition-all shadow-xl active:scale-95 -translate-x-1/2"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
+          <button onClick={scrollRightBtn} className="absolute right-4 top-1/2">
+            <ChevronRight />
+          </button>
 
           <div
             ref={containerRef}
-            onScroll={onScroll}
-            onTouchStart={() => {
-              setIsTouching(true);
-              containerRef.current?.classList.add("snap-none");
-            }}
-            onTouchEnd={() => {
-              setIsTouching(false);
-              containerRef.current?.classList.remove("snap-none");
-            }}
-            className="flex gap-5 sm:gap-8 overflow-x-auto no-scrollbar pb-10 pt-4 snap-x snap-mandatory px-2 sm:px-0"
+            onScroll={handleScroll}
+            onTouchStart={() => setIsTouching(true)}
+            onTouchEnd={() => setIsTouching(false)}
+            className="flex overflow-x-auto gap-6 snap-x snap-mandatory px-6"
           >
-            {tripleProjects.map((project, index) => (
-              <div key={`${project.id}-${index}`} className="snap-center">
+            {tripleProjects.map((project, i) => (
+              <div key={i} className="snap-center shrink-0">
                 <ProjectCard project={project} />
               </div>
             ))}
