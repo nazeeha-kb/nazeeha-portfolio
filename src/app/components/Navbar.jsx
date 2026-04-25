@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState("light");
 
   const navLinks = [
     { name: "About", href: "#about" },
@@ -49,25 +49,27 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
     setTheme(initialTheme);
-    if (initialTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+    if (initialTheme === "dark") {
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+    localStorage.setItem("theme", newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   };
 
@@ -90,36 +92,38 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* DESKTOP NAV */}
-        <ul className="hidden md:flex items-center gap-8 underline-indicator">
-          {navLinks.map((link) => (
-            <li
-              key={link.name}
-              className={`text-sm font-bold uppercase tracking-widest transition-colors ${
-                activeSection === link.href.slice(1)
-                  ? "active text-stone-900 dark:text-stone-100"
-                  : "text-stone-400 dark:text-stone-500"
-              }`}
-            >
-              <a href={link.href}>{link.name}</a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex md:gap-14 gap-6">
+          {/* DESKTOP NAV */}
+          <ul className="hidden md:flex items-center gap-8 underline-indicator">
+            {navLinks.map((link) => (
+              <li
+                key={link.name}
+                className={`text-sm font-bold uppercase tracking-widest transition-colors ${
+                  activeSection === link.href.slice(1)
+                    ? "active text-stone-900 dark:text-stone-100"
+                    : "text-stone-400 dark:text-stone-500"
+                }`}
+              >
+                <a href={link.href}>{link.name}</a>
+              </li>
+            ))}
+          </ul>
 
-        {/* THEME TOGGLE */}
-        <button
-          onClick={toggleTheme}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
-        >
-          {theme === 'light' ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-        {/* MOBILE MENU TOGGLE */}
-        <button
-          className="md:hidden text-stone-900 dark:text-stone-100"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* THEME TOGGLE */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
+          >
+            {theme === "light" ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          {/* MOBILE MENU TOGGLE */}
+          <button
+            className="md:hidden text-stone-900 dark:text-stone-100"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* MOBILE NAV OVERLAY */}

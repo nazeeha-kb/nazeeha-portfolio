@@ -12,25 +12,25 @@ const experiences = [
     location: "Remote",
     period: "2026 — Present",
     description:
-      "Leading the development of a design system used across 4 flagship products. Focused on performance optimization and accessibility.",
+      "Building the frontend for HerDeen's website with focus on performance optimization and accessibility standards improvements and scalability goals",
   },
   {
     id: 2,
-    role: "Frontend Developer -- Intern",
-    company: "Innova Collective",
-    location: "London, UK",
-    period: "2021 — 2023",
+    role: "WordPress Developer",
+    company: "Al-Teraz",
+    location: "Remote",
+    period: "2026",
     description:
-      "Built scalable web applications using Next.js and Node.js. Improved core web vitals by 40% for primary client dashboards.",
+      "Built WordPress website for the Alteraz tailoring store with Arabic RTL support performance optimization and responsive design implementation",
   },
   {
     id: 3,
-    role: "WordPress Developer",
-    company: "Al-Teraz",
-    location: "Dubai, UAE",
-    period: "2019 — 2021",
+    role: "Frontend Developer - Intern",
+    company: "Elevvo Pathways",
+    location: "Remote",
+    period: "2025",
     description:
-      "Collaborated with designers to translate high-fidelity prototypes into pixel-perfect, interactive React components.",
+      "Built 4 frontend projects focused on responsive design, UI consistency, and cross-device compatibility.",
   },
 ];
 
@@ -69,7 +69,10 @@ const ExperienceCard = ({ exp, index }) => {
 
         <div className="flex flex-wrap gap-4 pt-4 border-t border-stone-50 dark:border-stone-800">
           <div className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-stone-400 dark:text-stone-500">
-            <Calendar size={12} className="text-stone-300 dark:text-stone-600" />
+            <Calendar
+              size={12}
+              className="text-stone-300 dark:text-stone-600"
+            />
             {exp.period}
           </div>
           <div className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-stone-400 dark:text-stone-500">
@@ -85,7 +88,7 @@ const ExperienceCard = ({ exp, index }) => {
       </motion.div>
 
       {/* CENTER NODE */}
-      <div className="absolute left-1/2 top-11 -translate-x-1/2 z-10 hidden md:flex items-center justify-center">
+      <div className="absolute left-1/2 -translate-x-1/2 z-10 hidden md:flex items-center justify-center">
         <div className="w-3 h-3 rounded-full bg-stone-900 dark:bg-stone-100 shadow-[0_0_0_8px_white] dark:shadow-[0_0_0_8px_stone-900]" />
       </div>
 
@@ -110,7 +113,11 @@ const Experience = () => {
             <div className="w-8 h-[1px] bg-stone-200 dark:bg-stone-700" />
           </div>
           <h3 className="text-4xl md:text-5xl font-display font-medium text-stone-900 dark:text-stone-100 tracking-tight">
-            Work <span className="text-stone-400 dark:text-stone-500 italic">Experience</span>.
+            Work{" "}
+            <span className="text-stone-400 dark:text-stone-500 italic">
+              Experience
+            </span>
+            .
           </h3>
         </div>
 

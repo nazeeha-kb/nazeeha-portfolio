@@ -8,7 +8,6 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center px-6 bg-stone-50 dark:bg-stone-900 overflow-hidden">
       {/* soft ambient background layers */}
       <div className="absolute inset-0">
-        
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-amber-100/30 dark:bg-amber-900/20 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-stone-200/40 dark:bg-stone-800/40 blur-[140px] rounded-full" />
       </div>
@@ -33,9 +32,9 @@ const Hero = () => {
         >
           Building{" "}
           <span className="text-stone-400 dark:text-stone-500 italic font-serif">
-            fast, elegant
+            fast, responsive{" "}
           </span>{" "}
-          and production-ready interfaces
+          and production-ready interfaces{" "}
         </motion.h1>
 
         {/* description */}
@@ -46,7 +45,7 @@ const Hero = () => {
           className="text-stone-500 dark:text-stone-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed"
         >
           Frontend Developer focused on crafting clean, responsive, and
-          accessible web experiences using modern React and Next.js ecosystems.
+          accessible web experiences using React, Next.js, and modern web tools.
         </motion.p>
 
         {/* CTA buttons */}
@@ -54,13 +53,13 @@ const Hero = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex gap-4 justify-center pt-2"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center pt-2"
         >
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="btn bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200"
+            className="btn w-full sm:w-auto bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 text-center"
           >
             Get in Touch
           </motion.a>
@@ -69,7 +68,7 @@ const Hero = () => {
             href="#projects"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="btn border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:bg-stone-200 dark:hover:bg-stone-800"
+            className="btn w-full sm:w-auto border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:bg-stone-200 dark:hover:bg-stone-800 text-center"
           >
             See My Work
           </motion.a>
