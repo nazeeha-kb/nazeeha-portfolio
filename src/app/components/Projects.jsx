@@ -208,11 +208,11 @@ const Projects = () => {
 
         {/* Carousel */}
         <div className="relative">
-          <button onClick={scrollLeftBtn} className="absolute bg-white hover:bg-stone-100 rounded-full border border-stone-200 p-3 -left-2 top-1/2">
+          <button onClick={scrollLeftBtn} className="absolute dark:text-stone-700 bg-white hover:bg-stone-100 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-600 rounded-full border border-stone-200 dark:border-stone-700 p-3 -left-2 top-1/2">
             <ChevronLeft />
           </button>
 
-          <button onClick={scrollRightBtn} className="absolute bg-white hover:bg-stone-100 rounded-full border border-stone-200 p-3 -right-2 top-1/2">
+          <button onClick={scrollRightBtn} className="absolute dark:text-stone-700 bg-white hover:bg-stone-100 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-600 rounded-full border border-stone-200 dark:border-stone-700 p-3 -right-2 top-1/2">
             <ChevronRight />
           </button>
 
