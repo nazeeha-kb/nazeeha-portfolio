@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nazeeha's Portfolio
+
+A personal portfolio website showcasing my work as a Frontend Developer. This site highlights my skills, projects, experience, and provides a way to get in touch.
+
+**Live Link**: [Portfolio Webstie](https://nazeeha.dev)
+
+## Screenshot
+![screenshot](screenshot.png)
+## Features
+
+- **Hero Section**: Introduction with animated elements
+- **About**: Personal background and interests
+- **Skills**: Technical skills and tools I use
+- **Projects**: Showcase of my recent work
+- **Experience**: Professional background and achievements
+- **Contact**: Form to reach out to me
+- **Responsive Design**: Works well on all devices
+- **Dark Mode**: Toggle between light and dark themes
+- **Smooth Animations**: Powered by Framer Motion
+
+## Tech Stack
+
+- **Framework**: Next.js 16
+- **Frontend**: React 19
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: FontAwesome and Lucide React
+- **Fonts**: Geist (optimized by Next.js)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Make sure you have Node.js installed on your machine. You can download it from [nodejs.org](https://nodejs.org/).
+
+### Installation
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/nazeeha-portfolio.git
+   cd nazeeha-portfolio
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the portfolio.
+
+### Other Scripts
+
+- `npm run build` - Build the project for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint for code quality checks
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── components/     # Reusable UI components
+│   │   ├── About.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Experience.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── Projects.jsx
+│   │   └── Skills.jsx
+│   ├── globals.css     # Global styles
+│   ├── layout.js       # Root layout
+│   └── page.js         # Home page
+├── public/             # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Customization
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+This portfolio is built to be easily customizable:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Update personal information in the component files
+- Modify styles using Tailwind CSS classes
+- Add or remove sections as needed
+- Change color scheme in the Tailwind config
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The easiest way to deploy this Next.js app is using [Vercel](https://vercel.com/):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy automatically
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You can also deploy to other platforms that support Next.js like Netlify or Railway.
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This is a personal portfolio, so contributions are not expected. However, if you find any issues or have suggestions for improvements, feel free to open an issue.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
