@@ -74,7 +74,7 @@ const ProjectCard = ({ project }) => (
           rel="noopener noreferrer"
           className="h-10 sm:h-11 aspect-square border border-stone-200 dark:border-stone-700 rounded-full flex items-center justify-center text-stone-400 dark:text-stone-500 bg-white dark:bg-stone-800"
         >
-          <FontAwesomeIcon icon={faGithub} />
+          <div title="github repo"><FontAwesomeIcon icon={faGithub} /></div> 
         </motion.a>
       </div>
 

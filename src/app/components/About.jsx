@@ -65,7 +65,7 @@ const About = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center pt-2"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 md:justify-start justify-center pt-2"
             >
               <motion.a
                 href="#contact"

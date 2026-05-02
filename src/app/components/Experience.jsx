@@ -25,6 +25,14 @@ const experiences = [
   },
   {
     id: 3,
+    role: "Frontend Developer",
+    company: "Chingu Voyage",
+    location: "Remote",
+    period: "2025",
+    description: "Contributed as a frontend developer on PullBoard, a GitHub PR tracking dashboard, collaborating in a remote agile environment and working closely with a UI/UX designer to implement responsive UI and enhance usability.",
+  },
+  {
+    id: 4,
     role: "Frontend Developer - Intern",
     company: "Elevvo Pathways",
     location: "Remote",
