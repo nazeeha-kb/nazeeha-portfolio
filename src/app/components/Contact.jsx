@@ -265,7 +265,7 @@ const Contact = () => {
       )}
 
       {/* BACKGROUND ACCENTS */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-50 dark:bg-amber-900 blur-[120px] rounded-full translate-x-1/4 -translate-y-1/4 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-50 dark:bg-amber-900/15 blur-[120px] rounded-full translate-x-1/4 -translate-y-1/4 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-stone-50 dark:bg-stone-800 blur-[100px] rounded-full pointer-events-none" />
     </section>
   );

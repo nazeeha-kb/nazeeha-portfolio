@@ -46,7 +46,7 @@ const projects = [
     image: "/pullboard.png",
     tags: ["React", "TaiwlindCSS", "Axios", "Vite"],
     description:
-      "AI-powered Recipe generator with authentication. Generates recipes for ingredients entered.",
+      "GitHub pull request tracker with a dashboard for monitoring and managing PRs.",
     demoUrl: "https://v57-tier3-team-33-frontend.onrender.com/",
     githubUrl: "https://github.com/chingu-voyages/V57-tier3-team-33",
   },
@@ -201,18 +201,27 @@ const Projects = () => {
             <div className="w-8 h-[1px] bg-stone-200 dark:bg-stone-700" />
           </div>
           <h3 className="text-4xl md:text-5xl font-display font-medium text-stone-900 dark:text-stone-100 tracking-tight">
-            Crafting <span className="text-stone-400 dark:text-stone-500 italic">Digital</span>{" "}
+            Crafting{" "}
+            <span className="text-stone-400 dark:text-stone-500 italic">
+              Digital
+            </span>{" "}
             Excellence.
           </h3>
         </div>
 
         {/* Carousel */}
         <div className="relative">
-          <button onClick={scrollLeftBtn} className="absolute dark:text-stone-700 bg-white hover:bg-stone-100 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-600 rounded-full border border-stone-200 dark:border-stone-700 p-3 -left-2 top-1/2">
+          <button
+            onClick={scrollLeftBtn}
+            className="absolute dark:text-stone-7G00 bg-white hover:bg-stone-100 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-600 rounded-full border border-stone-200 dark:border-stone-700 p-3 -left-2 top-1/2"
+          >
             <ChevronLeft />
           </button>
 
-          <button onClick={scrollRightBtn} className="absolute dark:text-stone-700 bg-white hover:bg-stone-100 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-600 rounded-full border border-stone-200 dark:border-stone-700 p-3 -right-2 top-1/2">
+          <button
+            onClick={scrollRightBtn}
+            className="absolute dark:text-stone-7G00 bg-white hover:bg-stone-100 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-600 rounded-full border border-stone-200 dark:border-stone-700 p-3 -right-2 top-1/2"
+          >
             <ChevronRight />
           </button>
 
