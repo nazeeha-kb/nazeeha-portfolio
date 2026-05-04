@@ -36,9 +36,15 @@ body {
     @apply cursor-pointer px-6 py-2.5 transition rounded-md;
   }
 
+  .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+
   .carousel-container {
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    /* old IE/Edge legacy */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
