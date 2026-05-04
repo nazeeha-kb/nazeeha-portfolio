@@ -166,7 +166,7 @@ const Contact = () => {
                     title={social.title}
                     key={social.id}
                     href={social.url}
-                    className="font-bold text-stone-600 dark:text-stone-400 hover:text-amber-600 transition-colors uppercase tracking-tight"
+                    className="font-bold text-stone-600 dark:text-stone-400 hover:text-amber-600 dark:hover:text-amber-500/80 transition-colors uppercase tracking-tight"
                   >
                     <FontAwesomeIcon icon={social.icon} />{" "}
                   </a>
